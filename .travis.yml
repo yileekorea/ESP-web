@@ -20,7 +20,7 @@ deploy:
     secure: "NUEDzxnYCN6oQd9+K7Nevdya7mu7RV0wLISOZOviGYpQQW3aFR9khey1cef2Sp+TV8wbVh0Vjhr/Azx9l0M15wgwPWqrMMSvaAqQpUARESEk0+FII8PuJuerDI84dpALnDJ8ZpcM6lUzCHdfxUBsD3W2MIFF722+M7nq0EBQG7UXtb2gk0KjdvRBHw4tI9hgIRsxfg0kcITGaOdFQQAtInKdww6HfLsfQ9DjcwryiPDhUfN4MeIEp+c6gB2pyO1CUw0mZs/d/2gmkBp8jBduLpIOO7JeGT3ORnj+w3Uc4ek6PW+fPTTxA3OXniSat9jU84RV/7L1B4GDnSaU47EukgL9dSy26nGMmTxu562J4e9bM7AMEASeR2e1teZsu6yuUMnufbeqK42iOQV5JnXyZra2HCNf/728wff58fOiU7bBTt4lwroSa7hHExV/aTpK2a+XCzIr6EpgYeiTvOhO3cGXxXqrKH13MDWNwEixm1ar/DqEIHF9Flfa3quj/io1PTHtXue3zPNvsF/4W81ManznX/NIsLyvx0MgDSJ0tGOMO2IfDU0s0JWMwRgnZm+QE4Zd1eOmTcZj4TKVu1PP+DBpbe6hVxe16bDAbgKh9NIxh043SfjaiE4SdYLzk588lyWnmCGnip1SSV4zsqCBQYwDcnsKOCGFNSfx6f4pB/I="
 
   file:
-  - ".pioenvs/io2life_deploy/firmware.bin"
+  #- ".pioenvs/io2life_deploy/firmware.bin"
   - ".pioenvs/io2life_deploy/spiffs.bin"
   on:
     repo: yileekorea/ESP-web
