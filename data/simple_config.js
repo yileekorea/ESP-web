@@ -60,7 +60,7 @@ r1.onreadystatechange = function () {
     document.getElementById("mqtt_connected").innerHTML = "No";
   }
 
-  document.getElementById("free_heap").innerHTML = status.free_heap;
+  //document.getElementById("free_heap").innerHTML = status.free_heap;
   document.getElementById("version").innerHTML = status.version;
 
 //alert("status.mode:"+status.mode);
@@ -91,9 +91,22 @@ r1.onreadystatechange = function () {
       out += "<tr><td>"+status.ssid+"</td><td>"+status.srssi+"</td></tr>"
       document.getElementById("sta-ssid").innerHTML = out;
       document.getElementById("sta-ip").innerHTML = "<a href='http://"+status.ipaddress+"'>"+status.ipaddress+"</a>";
-      document.getElementById("ap-view").style.display = 'none';
+      //document.getElementById("ap-view").style.display = 'none';
+      document.getElementById("ap-view").style.display = '';
       document.getElementById("client-view").style.display = '';
       ipaddress = status.ipaddress;
+
+      var out = "";
+      for (var z in status.networks) {
+        if (status.rssi[z]=="undefined") status.rssi[z]="";
+        out += "<tr><td><input class='networkcheckbox' name='"+status.networks[z]+"' type='checkbox'></td><td>"+status.networks[z]+"</td><td>"+status.rssi[z]+"</td></tr>"
+      }
+      document.getElementById("networks").innerHTML = out;
+      var networkcheckboxes = document.getElementsByClassName("networkcheckbox");
+      for (var i = 0; i < networkcheckboxes.length; i++) {
+          networkcheckboxes[i].addEventListener('click', networkSelect, false);
+      }
+
   }
 
   //updateLastValues();
@@ -150,7 +163,7 @@ function updateStatus() {
 		var status = JSON.parse(status_fix);
 //alert("status.mode:"+status.mode);
 
-        document.getElementById("free_heap").innerHTML = status.free_heap;
+        //document.getElementById("free_heap").innerHTML = status.free_heap;
 /*
         if (status.emoncms_connected == "1"){
          document.getElementById("emoncms_connected").innerHTML = "Yes";
@@ -200,9 +213,10 @@ function updateWiFiStatus() {
     }
 
     if(r1.status == 200) {
+      //var responseText21 = JSON.stringify(r1.responseText);
+      //var status = JSON.parse(responseText21);
       var status_fix = r1.responseText.replace(/( �)|( �)/gi, "");
   		var status = JSON.parse(status_fix);
-
       if (status.mode=="STA+AP" || status.mode=="STA") {
         // Hide waiting message
         document.getElementById("wait-view").style.display = 'none';
@@ -354,6 +368,7 @@ document.getElementById("apoff").addEventListener("click", function(e) {
 // -----------------------------------------------------------------------
 // Event: Reset config and reboot
 // -----------------------------------------------------------------------
+/*
 document.getElementById("reset").addEventListener("click", function(e) {
 
     if (confirm("CAUTION: Do you really want to Factory Reset? All setting and config will be lost.")){
@@ -368,10 +383,11 @@ document.getElementById("reset").addEventListener("click", function(e) {
       r.send();
     }
 });
-
+*/
 // -----------------------------------------------------------------------
 // Event: Restart
 // -----------------------------------------------------------------------
+/*
 document.getElementById("restart").addEventListener("click", function(e) {
 
     if (confirm("Restart emonESP? Current config will be saved, takes approximately 10s.")){
@@ -386,7 +402,7 @@ document.getElementById("restart").addEventListener("click", function(e) {
       r.send();
     }
 });
-
+*/
 // -----------------------------------------------------------------------
 // UI: Network select
 // -----------------------------------------------------------------------
@@ -403,6 +419,7 @@ var networkSelect = function() {
 // Event:Check for updates & display current / latest
 // URL /firmware
 // -----------------------------------------------------------------------
+/*
 document.getElementById("updatecheck").addEventListener("click", function(e) {
     document.getElementById("firmware-version").innerHTML = "<tr><td>-</td><td>Connecting...</td></tr>";
     var r = new XMLHttpRequest();
@@ -418,7 +435,7 @@ document.getElementById("updatecheck").addEventListener("click", function(e) {
 	  };
     r.send();
 });
-
+*/
 
 // -----------------------------------------------------------------------
 // Event:Update Firmware DISABLED IN FIRMWARE
