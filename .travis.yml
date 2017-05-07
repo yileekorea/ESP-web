@@ -7,7 +7,6 @@ cache:
   - "~/.platformio"
 install:
 - pip install -U platformio
-#- platformio lib install 567 562
 - platformio platform install espressif8266 --with-package tool-mkspiffs
 script:
 - platformio --version
@@ -29,7 +28,7 @@ deploy:
   skip_cleanup: true
   overwrite: true
   file:
-  - ".pioenvs/io2life_deploy/firmware.bin"
+  #- ".pioenvs/io2life_deploy/firmware.bin"
   - ".pioenvs/io2life_deploy/spiffs.bin"
   on:
     repo: yileekorea/ESP-web
