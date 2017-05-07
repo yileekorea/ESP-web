@@ -7,6 +7,7 @@ cache:
   - "~/.platformio"
 install:
 - pip install -U platformio
+#- platformio lib install 567 562
 - platformio platform install espressif8266 --with-package tool-mkspiffs
 script:
 - platformio --version
@@ -22,19 +23,19 @@ after_success:
   - git commit -m "Set build VERSION number" public/version
   - git tag $GIT_TAG -a -m "Generated tag from TravisCI build $TRAVIS_BUILD_NUMBER"
   - git push --quiet https://$GITHUBKEY@github.com/yileekorea/ESP-web $GIT_TAG > /dev/null 2>&1
-  except:
-    - /^build-[0-9a-z\-]*/
 
 deploy:
   provider: releases
   skip_cleanup: true
   overwrite: true
   file:
-  #- ".pioenvs/io2life_deploy/firmware.bin"
+  - ".pioenvs/io2life_deploy/firmware.bin"
   - ".pioenvs/io2life_deploy/spiffs.bin"
   on:
     repo: yileekorea/ESP-web
     all_branches: true
     #condition: $TRAVIS_TAG =~ ^[0-9]+\.[0-9]+\.[0-9]+$
+    #condition: $TRAVIS_TAG =0.0.4
   api-key:
-    secure: nV0uMGyRNkq2wzSlOJ3V0f33DwYvrU8/rF925fGXVD7d1VrL7KhVc5OXT2e9NP+3ZeGDIEdHhnwSfHTnehm47MChD4ZCs0mK9YsJV9lSH8+fnG1HpmFIX5YL61h6MRjeDciLS0YnVrOjUy3dw21jTFZP0kpNDU6PT2MkZF6BUyhEFMAw3Tv41sh50jlbExCitaJE+YaZpWnQeilfk+tfUpERRxM+B23Q7SJm5iKCyZRL1xBUChizVc6cI9pScnOzomoNp7Hd/DfbOR0PLNzgBUoxu20ydezrHPyR6YweCeCcifhOW2OAbYyZYnaiAEeUpHu0Kc4aZtRLW6n/CvW+TpIpB5eDD+IqG7TVRNE7dWUWrpEYx5a5tkHXqj9+2lGJooIMJXIYqK+psiu3Vm4JiM7TOOPdWpsW7JIjf8eb0ya1upBip8glR3wSMjCeXkCSGAwB49le4NJy7OaCiN0bbK1Jq3Tzo7qrboZJ56rn/1tYGjKBskKSrSvxnPX4HSELfvm/NIKd+7HlZo3FgV6DfgOMwwF5J38feZDKdRwbhzruNPNs/F7PnDSBou1hKLZqQ7CSu16GSI3SwtVK8aFHch1OaiFMRvvK6wHG+Etbv6ic4dQDa+R47WpZODFCiPPcYTti1VcPkz0xRh2we6xxCaO8U6cDAP0KYeGrKvx8WiI=
+    secure: QxqlOYNNmTyGDVea6uUZ1Sf/GK+X3FmsWVVHwEXughkhDBUEaqvZMyB5MHd5TX+UQU1BpCFNoGzF2vEPfDlSRkhxAz1F5UL5IrfK0aqJC/Goj3/Ssw91KYW19vXsLP9ogsMhJ/ZD0v8Zlrj+BrhpbhdzZAQwpCVqkAJll7QRGNtI7p+b51gZhh4R315MuYGvwRFgCwc/TpDWNkLDl0qY+kiAzcGswXWKbozmeFCvU39wrnWHFtRx5Y5NtGpGSG157m9m6fnWEJgHSq3rRQx3WyjzQEShxPOp2oDZugsaVqUe3XKx13Sbd0pA5okcoyh9y+ky6SLfVwnIfic5monhb0oZNXx7orW+BrJLItLORS3MtDkAD/SjZEPA44KuaEuuGKLW93Pg9ZEq4hsw5WRVx3Yub5Pn9n6dp1h8Y+54gxsx1iu4uzBWtPH2V/GLrcWigMzB96YRWNaon1wFOL5T3rovn9IutmjmeldempwM+awwGIonFvRSx6ozWXNTUQ8TTWoClnb+tgBQfH9/kKJ/Jg4OK5Tj95Ryh7s6kZwozHoNPiz4UZ53J/siSYA9WTXj7ir1MqvqMGcwXY77Mzfvzw3+irz/esv6x3h3SCqCWrxGZMpXi6yJOcvY/Sk47XorwDevq8RRjbkywtRLA/fAnZlXgrNvOgo+PPgIjcgLVK4=
+    
