@@ -12,29 +12,23 @@ script:
 - platformio --version
 - platformio run -e io2life_deploy
 - platformio run -t buildfs -e io2life_deploy
-
 after_success:
-  # CREATE GIT TAG
-  - git config --global user.email "builds@travis-ci.com"
-  - git config --global user.name "Travis CI"
-  - export GIT_TAG=build-$TRAVIS_BRANCH-$(date -u "+%Y-%m-%d")-$TRAVIS_BUILD_NUMBER
-  - echo -n $GIT_TAG > public/version
-  - git commit -m "Set build VERSION number" public/version
-  - git tag $GIT_TAG -a -m "Generated tag from TravisCI build $TRAVIS_BUILD_NUMBER"
-  - git push --quiet https://$GITHUBKEY@github.com/yileekorea/ESP-web $GIT_TAG > /dev/null 2>&1
-
+- git config --global user.email "builds@travis-ci.com"
+- git config --global user.name "Travis CI"
+- export GIT_TAG=build-$TRAVIS_BRANCH-$(date -u "+%Y-%m-%d")-$TRAVIS_BUILD_NUMBER
+- echo -n $GIT_TAG > public/version
+- git commit -m "Set build VERSION number" public/version
+- git tag $GIT_TAG -a -m "Generated tag from TravisCI build $TRAVIS_BUILD_NUMBER"
+- git push --quiet https://$GITHUBKEY@github.com/yileekorea/ESP-web $GIT_TAG > /dev/null
+  2>&1
 deploy:
   provider: releases
   skip_cleanup: true
   overwrite: true
   file:
-  #- ".pioenvs/io2life_deploy/firmware.bin"
   - ".pioenvs/io2life_deploy/spiffs.bin"
   on:
     repo: yileekorea/ESP-web
     all_branches: true
-    #condition: $TRAVIS_TAG =~ ^[0-9]+\.[0-9]+\.[0-9]+$
-    #condition: $TRAVIS_TAG =0.0.4
   api-key:
-    secure: QxqlOYNNmTyGDVea6uUZ1Sf/GK+X3FmsWVVHwEXughkhDBUEaqvZMyB5MHd5TX+UQU1BpCFNoGzF2vEPfDlSRkhxAz1F5UL5IrfK0aqJC/Goj3/Ssw91KYW19vXsLP9ogsMhJ/ZD0v8Zlrj+BrhpbhdzZAQwpCVqkAJll7QRGNtI7p+b51gZhh4R315MuYGvwRFgCwc/TpDWNkLDl0qY+kiAzcGswXWKbozmeFCvU39wrnWHFtRx5Y5NtGpGSG157m9m6fnWEJgHSq3rRQx3WyjzQEShxPOp2oDZugsaVqUe3XKx13Sbd0pA5okcoyh9y+ky6SLfVwnIfic5monhb0oZNXx7orW+BrJLItLORS3MtDkAD/SjZEPA44KuaEuuGKLW93Pg9ZEq4hsw5WRVx3Yub5Pn9n6dp1h8Y+54gxsx1iu4uzBWtPH2V/GLrcWigMzB96YRWNaon1wFOL5T3rovn9IutmjmeldempwM+awwGIonFvRSx6ozWXNTUQ8TTWoClnb+tgBQfH9/kKJ/Jg4OK5Tj95Ryh7s6kZwozHoNPiz4UZ53J/siSYA9WTXj7ir1MqvqMGcwXY77Mzfvzw3+irz/esv6x3h3SCqCWrxGZMpXi6yJOcvY/Sk47XorwDevq8RRjbkywtRLA/fAnZlXgrNvOgo+PPgIjcgLVK4=
-    
+    secure: CQloxNb/baTpHKIWcNfDndBg4jAvflZ4bvj0HohWEN8tlsFWdY7eM96neiX0i9342DxzuPipDtagBP8HHL6LV49t3z9EWkhSxry1JDzd7zBM8/BPCdVj5iuXGLm/BxpXmKUCe7zdhNiT5ioR93U99rQZTle3CjXzKTRdN3ZTcUCl/tX+Gi23Z0rZZuizV4X9ZuPu1gWDm+91MIqkeX8bJ/9wkBfPFAPGtjEPt6k8vOtdgOOj9HHtk558j6ux3wQ4kgt4IgV5JBzyLCFpr4KjD/xbHhYBY32mNvnBEEwr7lSypPBnQEFuEw8rM781RRiVHi3wIX5oXx2T/iIyxVhoFJhGolX+yQAa49X6LfwYYPbMhPPb8R3OlV897hyaIeBC5UqT072xiAEoMjhjIF9ho4z5dPgry4zRJu71/YIfBKp11gIoEUc0ljA8dQYdTyj/RuKFzVmPPRi44c5iUWVMOyT2Mw/qli1VchAKwlVnEedxGzGns41+v4j9riZ6CNhHFiA+zx92BLjnoOLvFQwAY+2dxSrqNnH+uM9Kt4wBSpwMXuBmijVFyM8Pe3OpA26CQpop6YLMFdFMGHSTpz5YXHT/4YMqyXWWDmJHI7DzhgPdXWNlTZH/6frMV3f6yIPwTUSrspBDakj8c2SYp4lRWBCKHNEdYZ1H7cvQLvjxXbc=
