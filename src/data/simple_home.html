@@ -15,7 +15,7 @@
         <div class="box">
             <h1>io2Life<span></span></h1>
             <p><b> Version:</b> <a href=
-            "https://github.com/yileekorea/ESP-main/releases">v<span id="version"></span></a></p>
+            "https://github.com/yileekorea/ESP-main/releases"><span id="version"></span></a></p>
         </div><!--<div id="client-view" style="display:none">-->
         <div id="left-hand-container">
             <div id="one">
@@ -37,7 +37,7 @@
                         "display:none">AP모드 중지</button>
                     </div>
                     <div id="ap-view" style="display:none">
-                        <p>주변 AP상태 정보</p>
+                        <p>주변 AP상태 정보</p><button id="wifiscan"> 검색(scan)</button>
                         <table>
                             <tr>
                                 <th>Select</th>
@@ -46,31 +46,36 @@
                             </tr>
                             <tbody id="networks"></tbody>
                         </table>
-                        <p><b>비밀번호:</b><br>
+                        <p><b>AP 비밀번호:</b><br>
                         <input id="passkey" type="text"> <button id=
-                        "connect">연결 (connect)</button></p>
+                        "connect"> 연결 </button></p>
                     </div>
                     <div id="wait-view" style="display:none">
-                        <p>새로운 AP에 연결중...10초후 재접속 하세요</p>
+                        <p>잠시후 새로운 AP로...재접속 하세요</p>
                     </div>
                 </div>
             </div>
             <!--//////////////////////////////////////////////////////////////////////////////////-->
             <div id="five">
-                <h2>2. Login</h2>
+                <h2>2. Login/Admin</h2>
                 <div class="itembody-wrapper">
                     <p><b>아이디:</b><br>
                     <input id="www_user" type="text" value="admin"></p>
                     <p><b>비밀번호:</b><br>
                     <input id="www_pass" type="password"><br>
                     <br>
+                    <button id="save-admin">저장 (save)</button></p>
                     <br>
-                    <button id="save-admin">설정 적용 (save)</button></p>
                     <br>
-                    <button id="upload">Update Firmware from PC</button>
+                    <input id='command' type='text' value="/do_fw_update">
+                    <button id="save-command">기능실행(command)</button>
+                    <br>
+                    <button id="upload">PC에서 업데이트</button>
+                    <button id="reset">설정 초기화</button>
+                    <br>
                 </div>
             </div>
-		</div>
+        </div>
             <!--//////////////////////////////////////////////////////////////////////////////////-->
         <div id="right-hand-container">
             <div id="three">
@@ -78,10 +83,6 @@
                 <div class="itembody-wrapper">
                     <p><b>MQTT 서버*:</b><br>
                     <input id="mqtt_server" type="text"></p>
-                    <!--<p><b>MQTT Base-topic*:</b><br>
-                    <input id="mqtt_topic" type="text"></p>
-                    <p><b>MQTT Feed-name prefix:</b><br>
-                    <input id="mqtt_feed_prefix" type="text"></p>-->
                     <p><b>MQTT 아이디:</b><br>
                     <input id="mqtt_user" type="text"></p>
                     <p><b>MQTT 비밀번호:</b><br>
@@ -93,12 +94,12 @@
 		</div>
         <div id="footer-small-scrn">
             by <a href=
-            "https://io2Life.com"><span>io2</span>Life.com</a>
+            "https://io2Life.com"><span>io2Life.com</span></a>
         </div>
     </div>
     <div id="footer-large-scrn">
         by <a href=
-        "https://io2Life.com"><span>io2</span>Life.com</a>
+        "https://io2Life.com"><span>io2Life.com</span></a>
     </div>
     <script src="simple_config.js" type="text/javascript">
     </script>
